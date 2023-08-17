@@ -4,7 +4,7 @@ const dataBasePath = new URL('../db.json', import.meta.url)
 export class DataBase {
   #database = {}
 
-  read() {
+  constructor() {
     fs.readFile(dataBasePath, 'utf-8')
       .then((data) => {
         this.#database = JSON.parse(data)
@@ -36,14 +36,13 @@ export class DataBase {
   }
 
   insert(table, data) {
-    this.read()
     if (Array.isArray(this.#database[table])) {
       console.log(this.#database[table])
       this.#database[table].push(data)
     } else {
       this.#database[table] = [data]
     }
-    // this.#persist()
+    this.#persist()
     return data
   }
 

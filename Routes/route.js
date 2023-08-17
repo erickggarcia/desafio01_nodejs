@@ -26,7 +26,6 @@ export const routes = [
     method: 'POST',
     path: buildRoutePath('/task'),
     handler: (req, res) => {
-      console.log(req.body)
       const { title, description} = req.body
       const task = {
         id: randomUUID(),
